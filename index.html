@@ -2,6 +2,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Colorful Squares</title>
+<link rel="icon" type="image/png" href="f4v1c0n.png">
 <style>
 body {
     margin: 0;
@@ -10,7 +11,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    user-select: none;
+	user-select: none;
 }
 .box {
     width: 50px;
@@ -20,78 +21,35 @@ body {
     border-radius: 6px;
     transition: all 0.3s ease;
     cursor: pointer;
+	user-select: none;
 }
 </style>
 </head>
 <body>
 <script>
-
-function setCookie(name, value, days = 365){
-    const d = new Date();
-    d.setTime(d.getTime() + (days*24*60*60*1000));
-    document.cookie = name + "=" + value + ";expires=" + d.toUTCString() + ";path=/";
-}
-
-function getAllCookies(){
-    return document.cookie.split(";").map(x => x.trim());
-}
-
-function randomName(len=12){
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let out = "";
-    for(let i=0;i<len;i++) out += chars[Math.floor(Math.random()*chars.length)];
-    return out;
-}
-
+const body = document.body;
 const colors = ["red","green","blue","yellow","pink","orange","cyan","lime","magenta"];
-
-const squares = [];
 
 for(let i=0; i<6762; i++){
     const div = document.createElement('div');
-    div.className = "box";
-    squares.push(div);
-
-    div.addEventListener("click", () => {
-        let color = colors[Math.floor(Math.random()*colors.length)];
-        let rotation = Math.floor(Math.random()*360);
-        let scale = (0.5 + Math.random()).toFixed(2);
-
-        div.style.background = color;
-        div.style.transform = `rotate(${rotation}deg) scale(${scale})`;
-
-        let cookieName = randomName();
-        let cookieValue = color + "|" + rotation + "|" + scale;
-
-        setCookie(cookieName, cookieValue);
-
-        console.log("New cookie:", cookieName, "=", cookieValue);
+    div.className = 'box';
+    
+    div.addEventListener('click', ()=>{
+        div.style.background = colors[Math.floor(Math.random()*colors.length)];
+        div.style.transform = rotate(${Math.random()*360}deg) scale(${0.5 + Math.random()});
+        if(Math.random() < 0.05){
+        }
     });
-
-    document.body.appendChild(div);
+    
+    body.appendChild(div);
 }
+document.addEventListener('contextmenu', event => event.preventDefault());
+</script>
+</body>
 
-let cookies = getAllCookies();
-
-for (let c of cookies){
-    let [name, value] = c.split("=");
-
-    if(!value) continue;
-
-    let parts = value.split("|");
-    if(parts.length !== 3) continue;
-
-    let color = parts[0];
-    let rotation = parts[1];
-    let scale = parts[2];
-
-    squares.forEach(div=>{
-        div.style.background = color;
-        div.style.transform = `rotate(${rotation}deg) scale(${scale})`;
-    });
-}
-
+</html>
 document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
 </body>
 </html>
+

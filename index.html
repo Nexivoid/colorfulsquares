@@ -36,7 +36,7 @@ for(let i=0; i<6762; i++){
     
     div.addEventListener('click', ()=>{
         div.style.background = colors[Math.floor(Math.random()*colors.length)];
-        div.style.transform = rotate(${Math.random()*360}deg) scale(${0.5 + Math.random()});
+        div.style.transform = `rotate(${Math.random()*360}deg) scale(${0.5 + Math.random()})`;
         if(Math.random() < 0.05){
         }
     });
@@ -47,8 +47,4 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 </script>
 </body>
 
-</html>
-document.addEventListener("contextmenu", e => e.preventDefault());
-</script>
-</body>
 </html>
